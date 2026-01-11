@@ -41,18 +41,6 @@
   <span></span>
   <span></span>
 </div>
-
-<!-- Navigation Menu -->
-<ul class="nav__menu" id="nav-menu">
-  <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-  <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-  <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-  <li class="nav__item"><a href="#coding" class="nav__link">Coding Profile</a></li>
-  <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
-  <li class="nav__item"><a href="#certificates" class="nav__link">Certificates</a></li>
-  <li class="nav__item"><a href="#resume" class="nav__link">Resume</a></li>
-  <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-</ul>
 <script>
   const toggle = document.getElementById('nav-toggle');
   const menu = document.getElementById('nav-menu');
@@ -79,11 +67,11 @@
     <section class="about section" id="about">
       <h2 class="section-title">About</h2>
       <div class="about__container bd-grid">
-        <div ><img src="images/profile.png" alt="" class="about__img"></div>
+        <div ><img src="images/profile.png" alt="" class="about__img profile-card"></div>
         <div>
-          <h2 class="about__subtitle">I'm Rakesh K</h2>
-          <span class="about__profession">Computer Science and business system student  -RIT</span>
-          <p class="about__text">B.Tech student at Rajalakshmi Institute of Technology. Passionate about web development and problem-solving.curious and collaborative learner who enjoys working with others, sharing ideas, and learning through real-world experiences. I  adapt easily, and contribute positively to team efforts  growing both personally and professionally</p>
+          <h2 class="about__subtitle typing">I'm Rakesh K</h2>
+          <span class="about__profession typing">Computer Science and business system student  -RIT</span>
+          <p class="about__text typing-js" id="about-text" data-text="B.Tech student at Rajalakshmi Institute of Technology. Passionate about web development and problem-solving. Curious and collaborative learner who enjoys working with others, sharing ideas, and learning through real-world experiences. I adapt easily and contribute positively to team efforts, growing both personally and professionally."></p>
           
         </div>
       </div>
@@ -101,6 +89,7 @@
           <h3 class="skills__subtitle">Programming Languages</h3>
           <span class="skills__name">C</span>
           <span class="skills__name">C++</span>
+          <span class="skills__name">Java</span>
           <span class="skills__name">Python</span>
 
           <h3 class="skills__subtitle">Tools & Libraries</h3>
@@ -109,21 +98,26 @@
           <span class="skills__name">NumPy</span>
           <span class="skills__name">Pandas</span>
           <span class="skills__name">Matplotlib</span>
+          <span class="skills__name">MySQL</span>
         </div>
         
       </div>
     </section>
     <section class="coding section" id="coding">
   <h2 class="section-title">Coding Profiles</h2>
-  <div class="coding__container bd-grid">
-    <a href="https://skillrack.com/profile/520541/5ebb139a89e86c209f443b96ee3ccfb6597167cc" class="coding__card" target="_blank">
+    <div class="coding__container bd-grid">
+    <a href="https://skillrack.com/profile/520541/5ebb139a89e86c209f443b96ee3ccfb6597167cc" class="coding__card card-float card-shimmer" target="_blank">
       <img src="images/skillrack.png" class="coding__icon-img" />
       <h3 class="coding__platform">Skill Rack</h3>
     </a>
-    <a href="https://www.hackerrank.com/mentionmeasrake1" class="coding__card" target="_blank">
-      <i class='bx bxl-hackerrank coding__icon'></i>
+    <a href="https://www.hackerrank.com/mentionmeasrake1" class="coding__card card-float card-shimmer" target="_blank">
+     
       <img src="images/hackerrank.png" class="coding__icon-img" />
       <h3 class="coding__platform">HackerRank</h3>
+    </a>
+    <a href="https://leetcode.com/u/rakesh007006/" class="coding__card card-float card-shimmer" target="_blank">
+      <img src="images/leetcode.png" class="coding__icon-img" />
+      <h3 class="coding__platform">LeetCode</h3>
     </a>
     
     
@@ -132,9 +126,9 @@
 
 <h2 class="section-title" id="projects">Projects</h2>
 
-<div class="portfolio__container">
+  <div class="portfolio__container">
 
-  <div class="portfolio__card">
+  <div class="portfolio__card card-float card-shimmer">
     <div class="portfolio__logo">
       <img src="images/foodo.png" alt="FOODO Logo">
     </div>
@@ -143,8 +137,22 @@
       <p class="portfolio__description">
         FOODO is a Django-based live food-ordering web app for college canteens. It includes menu listings, dynamic cart, real-time order tracking, and admin dashboard.
       </p>
-      
+      <a href="#" class="portfolio__button">View Project</a>
     </div>
+  </div>
+
+  <div class="portfolio__card card-float card-shimmer">
+    <div class="portfolio__logo">
+      <img src="images/ss.png" alt="StackItLogo">
+    </div>
+    <div class="portfolio__content">
+      <h3 class="portfolio__title">StackIt – Private AI-Assisted Q&A Platform</h3>
+      <p class="portfolio__description">
+        A private Q&A app where students can ask questions safely. Features AI-powered question and answer improvement, distraction-free Zen Mode interface, invite-only groups with mentor support, and journals with confidence ratings to track learning progress.
+      </p>
+      <a href="https://github.com/rakesh7-k/stackit" class="portfolio__button" target="_blank">View Project</a>
+    </div>
+  </div>
   </div>
 
 </div>
@@ -341,3 +349,50 @@
 
 </body>
 </html>
+
+<script>
+  (function(){
+    const el = document.getElementById('about-text');
+    if(!el) return;
+    const text = el.getAttribute('data-text') || '';
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced){
+      el.textContent = text;
+      return;
+    }
+    
+    // Scroll-triggered typing using Intersection Observer
+    let hasTyped = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting && !hasTyped){
+          hasTyped = true;
+          observer.unobserve(el);
+          typeText();
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    observer.observe(el);
+    
+    function typeText(){
+      let i = 0;
+      const speed = 24; // ms per character
+      el.textContent = '';
+      
+      const caret = document.createElement('span');
+      caret.className = 'typing-caret';
+      el.parentNode.insertBefore(caret, el.nextSibling);
+      
+      const t = setInterval(()=>{
+        el.textContent += text.charAt(i);
+        i++;
+        if(i >= text.length){
+          clearInterval(t);
+          if(caret && caret.parentNode) caret.parentNode.removeChild(caret);
+        }
+      }, speed);
+    }
+  })();
+</script>
